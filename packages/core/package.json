@@ -1,0 +1,37 @@
+{
+	"name": "@await-to/core",
+	"version": "0.0.1",
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"require": "./dist/index.js",
+			"import": "./dist/index.mjs",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"author": {
+		"name": "Jose Albizures",
+		"email": "jose@albizures.com",
+		"url": "https://albizures.com"
+	},
+	"files": [
+		"dist"
+	],
+	"license": "MIT",
+	"scripts": {
+		"build": "tsup",
+		"dev": "pnpm build --watch",
+		"test": "pnpm test:types && vitest",
+		"test:types": "tsc --noEmit",
+		"coverage": "vitest run --coverage"
+	},
+	"devDependencies": {
+		"rollup-plugin-dts": "^4.2.3",
+		"tsup": "^6.3.0",
+		"tsconfig": "workspace:*",
+		"typescript": "^4.8.4",
+		"vitest": "^0.24.3"
+	}
+}
