@@ -25,9 +25,7 @@
 ### Installation
 
 ```sh
-npm i @await-to/core    # npm
-yarn add @await-to/core # yarn
-pnpm add @await-to/core # pnpm
+npm i @await-to/core
 ```
 
 ### Example
@@ -51,9 +49,7 @@ if (result.ok) {
 ### Installation
 
 ```sh
-npm i @await-to/chainable    # npm
-yarn add @await-to/chainable # yarn
-pnpm add @await-to/chainable # pnpm
+npm i @await-to/chainable
 ```
 
 ### Example
