@@ -137,7 +137,7 @@ If you have any feedback, please reach out to us at [@albzrs](https://twitter.co
 
 ## Acknowledgements
 
-The api of this libray was heavily inspired in [await-to-js](https://github.com/scopsy/await-to-js)
+The api of this libray was heavily inspired by [await-to-js](https://github.com/scopsy/await-to-js)
 
 ## License
 
