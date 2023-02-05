@@ -43,8 +43,6 @@ describe('chainable', async () => {
 
 		const result = await promise.get();
 
-		console.log(result);
-
 		assert(!result.ok);
 		expect(result.error).toBe('error');
 	});
