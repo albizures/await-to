@@ -29,10 +29,6 @@ export function to<D, E>(promise: Promise<D>): Chainable<D, E> {
 		let result: Result<unknown> = await simpleTo(promise);
 		for (const transform of transforms) {
 			result = await transform(result);
-
-			if (!result.ok) {
-				break;
-			}
 		}
 
 		return result as Result<D, E>;

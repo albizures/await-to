@@ -26,13 +26,12 @@ describe('chainable', async () => {
 		expect(result.data).toBe('-1');
 	});
 	it('should return an error when rejected', async () => {
-		const a = await to<boolean, boolean>(Promise.reject(true)).get();
 		const promise = to<boolean, boolean>(Promise.reject(true))
 			.and(async (result) => {
 				if (result.ok) {
 					return OkResult(result.data ? 1 : 2);
 				}
-				return OkResult(-1);
+				return FailResult(-1);
 			})
 			.and((result) => {
 				if (result.ok) {
@@ -43,6 +42,8 @@ describe('chainable', async () => {
 			});
 
 		const result = await promise.get();
+
+		console.log(result);
 
 		assert(!result.ok);
 		expect(result.error).toBe('error');
