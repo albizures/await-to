@@ -1,13 +1,14 @@
-import { Transform } from '@await-to/chainable';
 import { OkResult, Result, FailResult } from '@await-to/core';
-import { ZodType, ZodAny, input, output } from 'zod';
+import { z } from 'zod';
 
 export function awaitToZod<
-	S extends ZodAny,
-	O = output<S>,
-	I = input<S>,
->(schema: ZodType<O, any, I>): Transform<unknown, O> {
-	return <D1>(result: Result<D1>) => {
+	S extends z.ZodAny,
+	O = z.output<S>,
+	I = z.input<S>,
+>(schema: z.ZodType<O, any, I>) {
+	return <D1, E1>(
+		result: Result<D1, E1>,
+	): Result<O, z.ZodError<I> | E1> => {
 		if (!result.ok) {
 			return result;
 		}

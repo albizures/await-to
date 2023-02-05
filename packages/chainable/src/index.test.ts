@@ -1,11 +1,11 @@
-import { OkResult } from '@await-to/core';
+import { FailResult, OkResult } from '@await-to/core';
 import { describe, it, expect, assert } from 'vitest';
 
 import { to } from '.';
 
 describe('chainable', async () => {
 	it('should return a value when resolved', async () => {
-		const a = to(Promise.reject(true))
+		const promise = to(Promise.reject(true))
 			.and(async (result) => {
 				if (result.ok) {
 					return OkResult(result.data ? 1 : 2);
@@ -20,9 +20,31 @@ describe('chainable', async () => {
 				}
 			});
 
-		const result = await a.get();
+		const result = await promise.get();
 
 		assert(result.ok);
 		expect(result.data).toBe('-1');
+	});
+	it('should return an error when rejected', async () => {
+		const a = await to<boolean, boolean>(Promise.reject(true)).get();
+		const promise = to<boolean, boolean>(Promise.reject(true))
+			.and(async (result) => {
+				if (result.ok) {
+					return OkResult(result.data ? 1 : 2);
+				}
+				return OkResult(-1);
+			})
+			.and((result) => {
+				if (result.ok) {
+					return OkResult(result.data.toString());
+				} else {
+					return FailResult('error');
+				}
+			});
+
+		const result = await promise.get();
+
+		assert(!result.ok);
+		expect(result.error).toBe('error');
 	});
 });
